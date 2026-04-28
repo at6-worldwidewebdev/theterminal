@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TheTerminal</title>
+  <style>
+    body {
+      background: black;
+      color: #00ff00;
+      font-family: "Courier New", monospace;
+      text-align: center;
+      padding-top: 100px;
+    }
+    #wire-section, #main-content {
+      display: none;
+    }
+    .wire {
+      width: 200px;
+      height: 10px;
+      margin: 20px auto;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    #red-wire { background: red; }
+    #blue-wire { background: blue; }
+  </style>
+</head>
+<body>
+
+  <div id="password-section">
+    <h1>ACCESS REQUIRED</h1>
+    <p>Enter Password:</p>
+    <input id="password-input" type="password" style="font-size:20px;">
+    <button onclick="checkPassword()">Submit</button>
+    <p id="password-error" style="color:red;"></p>
+  </div>
+
+  <div id="wire-section">
+    <h1>SECURITY OVERRIDE</h1>
+    <p>Select the correct wire to cut.</p>
+    <div id="red-wire" class="wire" onclick="cutWire('red')"></div>
+    <div id="blue-wire" class="wire" onclick="cutWire('blue')"></div>
+    <p id="wire-error" style="color:red;"></p>
+  </div>
+
+  <div id="main-content">
+    <h1>WELCOME TO THETERMINAL</h1>
+    <p>Access Granted.</p>
+  </div>
+
+<script>
+  function checkPassword() {
+    const input = document.getElementById("password-input").value;
+    if (input === "1330") {
+      document.getElementById("password-section").style.display = "none";
+      document.getElementById("wire-section").style.display = "block";
+    } else {
+      document.getElementById("password-error").innerText = "Incorrect password.";
+    }
+  }
+
+  function cutWire(color) {
+    if (color === "red") {
+      document.getElementById("wire-section").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    } else {
+      document.getElementById("wire-error").innerText = "Wrong wire. Access denied.";
+    }
+  }
+</script>
+
+</body>
+</html>
